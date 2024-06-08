@@ -1,0 +1,77 @@
+scalar Date
+
+type Mutation {
+    createEmployee(employee: EmployeeRequest!) : Employee
+}
+
+type Query {
+    getEmployees : [Employee]
+    getEmployeeById(id:ID!) : Employee
+}
+
+type Employee implements BaseEntity{
+    id: ID
+    name: String
+    surname: String
+    identityNumber: String
+    department: Department
+    createdAt: Date
+    updatedAt: Date
+    address: Address
+    contacts: [Contact]
+}
+
+type Contact {
+    id: ID
+    name: String
+    surname: String
+    email: String
+    phone: String
+
+}
+
+type Address {
+    id: ID
+    city: String
+    country: String
+    street: String
+    zipCode: String
+}
+
+interface BaseEntity {
+    id: ID
+    createdAt: Date
+    updatedAt: Date
+
+}
+
+input EmployeeRequest {
+    name: String!
+    surname: String!
+    identityNumber: String!
+    department: Department!
+    address: AddressRequest!
+    contacts: [ContactRequest]!
+
+}
+
+input AddressRequest {
+    city: String
+    country: String
+    street: String
+    zipCode: String
+}
+
+input ContactRequest {
+    name: String
+    surname: String
+    email: String
+    phone: String
+}
+
+
+enum Department {
+    DEVELOPER,
+    TESTER,
+    MANAGER
+}
