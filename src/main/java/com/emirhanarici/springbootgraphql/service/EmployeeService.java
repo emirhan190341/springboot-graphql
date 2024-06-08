@@ -1,5 +1,6 @@
 package com.emirhanarici.springbootgraphql.service;
 
+import com.emirhanarici.springbootgraphql.exception.EmployeeNotFoundException;
 import com.emirhanarici.springbootgraphql.model.Employee;
 import com.emirhanarici.springbootgraphql.repository.EmployeeRepository;
 import lombok.RequiredArgsConstructor;
@@ -29,7 +30,7 @@ public class EmployeeService {
 
     public Employee getEmployeeById(Long id) {
         log.info("Employee listed by id: {}", id);
-        return employeeRepository.findById(id).orElse(null);
+        return employeeRepository.findById(id).orElseThrow(() -> new EmployeeNotFoundException("Employee not found by id: " + id));
     }
 
 
