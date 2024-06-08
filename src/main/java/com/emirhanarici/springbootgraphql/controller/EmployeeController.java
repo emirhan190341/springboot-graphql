@@ -30,7 +30,7 @@ public class EmployeeController {
     }
 
     @QueryMapping
-    public Employee getEmployeeById(@Argument Long id) {
+    public Employee getEmployeeById(@Argument("id") Long id) {
         return employeeService.getEmployeeById(id);
     }
 
