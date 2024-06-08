@@ -23,10 +23,12 @@ public class EmployeeService {
     }
 
     public List<Employee> getEmployees() {
+        log.info("All employees listed");
         return employeeRepository.findAll();
     }
 
     public Employee getEmployeeById(Long id) {
+        log.info("Employee listed by id: {}", id);
         return employeeRepository.findById(id).orElse(null);
     }
 
